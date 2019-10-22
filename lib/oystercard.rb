@@ -2,7 +2,7 @@ class Oystercard
   attr_reader :balance
 
   LIMIT = 90
-  MINIMUM_BALANCE = 1
+  MINIMUM_CHARGE = 1
 
   def initialize
     @balance = 0
@@ -33,7 +33,7 @@ class Oystercard
   end
 
   private def minimum_balance?
-    return @balance < MINIMUM_BALANCE
+    return @balance < MINIMUM_CHARGE
   end
 
   private def balance_empty?(amount)
