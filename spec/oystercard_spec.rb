@@ -29,4 +29,8 @@ describe Oystercard do
     subject.top_up(5)
     expect { subject.deduct(10) }.to raise_error 'Not enough funds'
   end
+
+  it "Should initially not be in journey" do
+    expect(subject).not_to be_in_journey
+  end
 end
