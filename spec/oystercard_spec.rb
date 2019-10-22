@@ -12,6 +12,6 @@ describe Oystercard do
 
   it "Balance is able to be topped up" do
     subject.top_up(5)
-    expect(subject.balance).to eq 0
+    expect(subject.balance).to eq 5
   end
 end
