@@ -18,4 +18,15 @@ describe Oystercard do
   it "Raises an error when top up is over the limit" do
     expect { subject.top_up(200) }.to raise_error ('The limit is £90')
   end
+
+  it "Balance is able to be deducted" do
+    subject.top_up(10)
+    subject.deduct(5)
+    expect(subject.balance).to eq 5
+  end
+
+  it "Does not allow balance to go below 0" do
+    subject.top_up(5)
+    expect { subject.deduct(10) }.to raise_error 'Not enough funds'
+  end
 end
