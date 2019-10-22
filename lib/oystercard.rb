@@ -17,6 +17,10 @@ class Oystercard
     raise "Not enough funds" if balance_empty?(amount)
     @balance -= amount
   end
+  
+  def touch_in
+    @in_use = true
+  end
 
   def in_journey?
     return @in_use
