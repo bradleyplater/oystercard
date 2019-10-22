@@ -6,7 +6,6 @@ class Oystercard
 
   def initialize
     @balance = 0
-    @in_use = false
   end
 
   def top_up(amount)
@@ -22,11 +21,11 @@ class Oystercard
   
   def touch_out
     deduct(MINIMUM_CHARGE)
-    @in_use = false
+    @entry_station = nil
   end
 
   def in_journey?
-    return @in_use
+    !!entry_station
   end
 
   private def deduct(amount)
