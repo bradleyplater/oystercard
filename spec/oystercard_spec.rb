@@ -24,15 +24,6 @@ describe Oystercard do
     expect { subject.top_up(200) }.to raise_error ('The limit is £90')
   end
 
-  it "Balance is able to be deducted" do
-    subject.deduct(5)
-    expect(subject.balance).to eq 85
-  end
-
-  it "Does not allow balance to go below 0" do
-    expect { subject.deduct(100) }.to raise_error 'Not enough funds'
-  end
-
   it "Should initially not be in journey" do
     expect(subject).not_to be_in_journey
   end

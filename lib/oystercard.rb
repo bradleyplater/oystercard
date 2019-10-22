@@ -13,11 +13,6 @@ class Oystercard
     raise "The limit is £#{LIMIT}" if over_limit?(amount)
     @balance += amount
   end
-
-  def deduct(amount)
-    raise "Not enough funds" if balance_empty?(amount)
-    @balance -= amount
-  end
   
   def touch_in
     raise "Not enough funds" if minimum_balance?
@@ -31,6 +26,11 @@ class Oystercard
 
   def in_journey?
     return @in_use
+  end
+
+  private def deduct(amount)
+    raise "Not enough funds" if balance_empty?(amount)
+    @balance -= amount
   end
 
   private def minimum_balance?
