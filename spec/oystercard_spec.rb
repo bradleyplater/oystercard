@@ -52,4 +52,9 @@ describe Oystercard do
     oystercard = Oystercard.new
     expect{ oystercard.touch_in }.to raise_error "Not enough funds"
   end
+
+  it "Should deduct the correct amount from the balance" do
+    subject.touch_in
+    expect{ subject.touch_out }.to change{ subject.balance }.by(-Oystercard::MINIMUM_CHARGE)
+  end
 end
