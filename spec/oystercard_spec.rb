@@ -47,4 +47,8 @@ describe Oystercard do
     subject.touch_out
     expect(subject).not_to be_in_journey
   end
+
+  it "Should raise error if user does not have enough funds for one journey" do
+    expect(subject.touch_in).to raise_error "Not enough funds"
+  end
 end
