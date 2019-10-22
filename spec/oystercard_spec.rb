@@ -16,6 +16,6 @@ describe Oystercard do
   end
 
   it "Raises an error when top up is over the limit" do
-    expect(subject.top_up(100)).to raise_error "The limit is £90"
+    expect { subject.top_up(200) }.to raise_error ('The limit is £90')
   end
 end
