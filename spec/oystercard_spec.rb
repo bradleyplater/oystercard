@@ -33,4 +33,9 @@ describe Oystercard do
   it "Should initially not be in journey" do
     expect(subject).not_to be_in_journey
   end
+
+  it "Should be set to in use when user touches in" do
+    subject.touch_in
+    expect(subject).to be_in_journey
+  end
 end
