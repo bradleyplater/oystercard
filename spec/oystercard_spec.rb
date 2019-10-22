@@ -49,6 +49,7 @@ describe Oystercard do
   end
 
   it "Should raise error if user does not have enough funds for one journey" do
-    expect(subject.touch_in).to raise_error "Not enough funds"
+    oystercard = Oystercard.new
+    expect{ oystercard.touch_in }.to raise_error "Not enough funds"
   end
 end
