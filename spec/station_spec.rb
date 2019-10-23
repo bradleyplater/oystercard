@@ -10,4 +10,8 @@ describe Station do
   it 'station is able to store a name' do
     expect(subject.name).to eq "Station1"
   end
+
+  it 'station is able to store a zone' do
+    expect(subject.zone).to eq 1
+  end
 end
