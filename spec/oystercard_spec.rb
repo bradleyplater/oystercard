@@ -47,13 +47,13 @@ describe Oystercard do
   end
 
   it "Should deduct the correct amount from the balance" do
-    subject.touch_in(station)
+    subject.touch_in(entry_station)
     expect{ subject.touch_out(exit_station) }.to change{ subject.balance }.by(-Oystercard::MINIMUM_CHARGE)
   end
 
   it "Should be able to store the entry station" do
     subject.touch_in(entry_station)
-    expect(subject.entry_station).to eq station
+    expect(subject.entry_station).to eq entry_station
   end
 
   it 'stores exit station' do
