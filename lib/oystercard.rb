@@ -42,6 +42,6 @@ class Oystercard
   end
 
   private def over_limit?(amount)
-    return amount > LIMIT
+    return (@balance + amount) > LIMIT
   end
 end

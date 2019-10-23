@@ -2,7 +2,8 @@ require 'oystercard'
 
 describe Oystercard do
   subject { Oystercard.new }
-  let (:station) {double :station}
+  let (:entry_station) {double :station}
+  let (:exit_station) {double :station}
 
   before(:each) do
     subject.top_up(Oystercard::LIMIT)
@@ -30,28 +31,35 @@ describe Oystercard do
   end
 
   it "Should be set to in use when user touches in" do
-    subject.touch_in(station)
+    subject.touch_in(entry_station)
     expect(subject).to be_in_journey
   end
 
   it "should be set to not in use when user touches out" do
-    subject.touch_in(station)
-    subject.touch_out
+    subject.touch_in(entry_station)
+    subject.touch_out(exit_station)
     expect(subject).not_to be_in_journey
   end
 
   it "Should raise error if user does not have enough funds for one journey" do
     oystercard = Oystercard.new
-    expect{ oystercard.touch_in(station) }.to raise_error "Not enough funds"
+    expect{ oystercard.touch_in(entry_station) }.to raise_error "Not enough funds"
   end
 
   it "Should deduct the correct amount from the balance" do
     subject.touch_in(station)
-    expect{ subject.touch_out }.to change{ subject.balance }.by(-Oystercard::MINIMUM_CHARGE)
+    expect{ subject.touch_out(exit_station) }.to change{ subject.balance }.by(-Oystercard::MINIMUM_CHARGE)
   end
 
   it "Should be able to store the entry station" do
-    subject.touch_in(station)
+    subject.touch_in(entry_station)
     expect(subject.entry_station).to eq station
   end
+
+  it 'stores exit station' do
+    subject.touch_in(entry_station)
+    subject.touch_out(exit_station)
+    expect(subject.exit_station).to eq exit_station
+  end
+
 end
